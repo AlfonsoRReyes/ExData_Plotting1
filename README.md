@@ -57,19 +57,13 @@ Finished reading  2880 rows
 ```
 
 ```r
-dim(power)[1]
+rows <- dim(power)[1]
+cols <- dim(power)[2]
+cat(sprintf("rows: %d, cols: %d", rows, cols))
 ```
 
 ```
-[1] 2880
-```
-
-```r
-dim(power)[2]
-```
-
-```
-[1] 9
+rows: 2880, cols: 9
 ```
 
 The dataset has 2880 observations and 9 variables.
@@ -78,51 +72,20 @@ The dataset has 2880 observations and 9 variables.
 All the variables to be used are factors. Need to be converted
 
 ```r
-class(power$Date)
+str(power)
 ```
 
 ```
-[1] "character"
-```
-
-```r
-class(power$Time)
-```
-
-```
-[1] "character"
-```
-
-```r
-class(power$Global_active_power)
-```
-
-```
-[1] "numeric"
-```
-
-```r
-class(power$Global_reactive_power)
-```
-
-```
-[1] "numeric"
-```
-
-```r
-class(power$Sub_metering_1)
-```
-
-```
-[1] "numeric"
-```
-
-```r
-class(power$Voltage)
-```
-
-```
-[1] "numeric"
+'data.frame':	2880 obs. of  9 variables:
+ $ Date                 : chr  "1/2/2007" "1/2/2007" "1/2/2007" "1/2/2007" ...
+ $ Time                 : chr  "00:00:00" "00:01:00" "00:02:00" "00:03:00" ...
+ $ Global_active_power  : num  0.326 0.326 0.324 0.324 0.322 0.32 0.32 0.32 0.32 0.236 ...
+ $ Global_reactive_power: num  0.128 0.13 0.132 0.134 0.13 0.126 0.126 0.126 0.128 0 ...
+ $ Voltage              : num  243 243 244 244 243 ...
+ $ Global_intensity     : num  1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1 ...
+ $ Sub_metering_1       : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Sub_metering_2       : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Sub_metering_3       : num  0 0 0 0 0 0 0 0 0 0 ...
 ```
 
 
@@ -161,59 +124,29 @@ power07_2d <- power %>%
 
 
 ```r
-class(power07_2d$Date)
+# class(power07_2d$Date)
+# class(power07_2d$Time)
+# class(power07_2d$Global_active_power)
+# class(power07_2d$Global_reactive_power)
+# class(power07_2d$Sub_metering_1)
+# class(power07_2d$Voltage)
+# class(power07_2d$date_time)
+
+str(power07_2d)
 ```
 
 ```
-[1] "character"
-```
-
-```r
-class(power07_2d$Time)
-```
-
-```
-[1] "character"
-```
-
-```r
-class(power07_2d$Global_active_power)
-```
-
-```
-[1] "numeric"
-```
-
-```r
-class(power07_2d$Global_reactive_power)
-```
-
-```
-[1] "numeric"
-```
-
-```r
-class(power07_2d$Sub_metering_1)
-```
-
-```
-[1] "numeric"
-```
-
-```r
-class(power07_2d$Voltage)
-```
-
-```
-[1] "numeric"
-```
-
-```r
-class(power07_2d$date_time)
-```
-
-```
-[1] "POSIXct" "POSIXt" 
+'data.frame':	2880 obs. of  10 variables:
+ $ Date                 : chr  "1/2/2007" "1/2/2007" "1/2/2007" "1/2/2007" ...
+ $ Time                 : chr  "00:00:00" "00:01:00" "00:02:00" "00:03:00" ...
+ $ Global_active_power  : num  0.326 0.326 0.324 0.324 0.322 0.32 0.32 0.32 0.32 0.236 ...
+ $ Global_reactive_power: num  0.128 0.13 0.132 0.134 0.13 0.126 0.126 0.126 0.128 0 ...
+ $ Voltage              : num  243 243 244 244 243 ...
+ $ Global_intensity     : num  1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1 ...
+ $ Sub_metering_1       : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Sub_metering_2       : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Sub_metering_3       : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ date_time            : POSIXct, format: "2007-02-01 00:00:00" "2007-02-01 00:01:00" ...
 ```
 
 `power07_2d` is the data frame for observation for two days in February 2007.
@@ -229,6 +162,24 @@ hist(power07_2d$Global_active_power, col = "red", xlab = "Global Active Power (k
 
 ![](README_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
 
+```r
+dev.copy(png,"plot1.png", width=480, height=480)
+```
+
+```
+png 
+  3 
+```
+
+```r
+dev.off()
+```
+
+```
+png 
+  2 
+```
+
 
 
 # Plot #2 - Global Active Power vs Days
@@ -240,8 +191,25 @@ with(power07_2d, plot(date_time, Global_active_power, type="l", xlab = "", ylab 
 
 ![](README_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
-# Plot #3 - Energy sub metering with legends
+```r
+dev.copy(png,"plot2.png", width=480, height=480)
+```
 
+```
+png 
+  3 
+```
+
+```r
+dev.off()
+```
+
+```
+png 
+  2 
+```
+
+# Plot #3 - Energy sub metering with legends
 
 
 
@@ -253,6 +221,24 @@ legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), col 
 ```
 
 ![](README_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+
+```r
+dev.copy(png,"plot3.png", width=480, height=480)
+```
+
+```
+png 
+  3 
+```
+
+```r
+dev.off()
+```
+
+```
+png 
+  2 
+```
 
 # Plot # 4 - four plots in one
 
@@ -304,5 +290,23 @@ with(power07_2d,
 ```
 
 ![](README_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+
+```r
+dev.copy(png,"plot4.png", width=480, height=480)
+```
+
+```
+png 
+  3 
+```
+
+```r
+dev.off()
+```
+
+```
+png 
+  2 
+```
 
 
