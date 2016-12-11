@@ -10,6 +10,7 @@ library(lubridate)
 ```
 
 
+
 # Review criteria
 
 ## Criteria
@@ -124,14 +125,6 @@ power07_2d <- power %>%
 
 
 ```r
-# class(power07_2d$Date)
-# class(power07_2d$Time)
-# class(power07_2d$Global_active_power)
-# class(power07_2d$Global_reactive_power)
-# class(power07_2d$Sub_metering_1)
-# class(power07_2d$Voltage)
-# class(power07_2d$date_time)
-
 str(power07_2d)
 ```
 
@@ -160,7 +153,7 @@ str(power07_2d)
 hist(power07_2d$Global_active_power, col = "red", xlab = "Global Active Power (kilowatts", main = "Global Active Power")
 ```
 
-![](README_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+![](README_files/figure-html/plot1-chunk-1.png)<!-- -->
 
 ```r
 dev.copy(png,"plot1.png", width=480, height=480)
@@ -189,7 +182,7 @@ png
 with(power07_2d, plot(date_time, Global_active_power, type="l", xlab = "", ylab = "Global Active Power (kilowatts)"))
 ```
 
-![](README_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+![](README_files/figure-html/plot2-chunk-1.png)<!-- -->
 
 ```r
 dev.copy(png,"plot2.png", width=480, height=480)
@@ -220,7 +213,7 @@ lines(power07_2d$date_time, power07_2d$Sub_metering_3, col = "blue")
 legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), col = c("black", "red", "blue"),  lty = c(1, 1, 1))
 ```
 
-![](README_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+![](README_files/figure-html/plot3-chunk-1.png)<!-- -->
 
 ```r
 dev.copy(png,"plot3.png", width=480, height=480)
@@ -250,7 +243,7 @@ with(power07_2d,
 )
 ```
 
-![](README_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+![](README_files/figure-html/plot4-1-chunk-1.png)<!-- -->
 ## Plot Global Reactive Power vs datetime
 
 
@@ -260,7 +253,7 @@ with(power07_2d,
 )
 ```
 
-![](README_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+![](README_files/figure-html/plot4-2-chunk-1.png)<!-- -->
 
 ## Plot all 4 plots
 
@@ -289,7 +282,7 @@ with(power07_2d,
 )
 ```
 
-![](README_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+![](README_files/figure-html/plot4-chunk-1.png)<!-- -->
 
 ```r
 dev.copy(png,"plot4.png", width=480, height=480)
