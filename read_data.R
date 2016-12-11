@@ -1,6 +1,7 @@
 
 
 read_2d <- function() {
+  # function to read selected rows from large dataset
   
   library(dplyr)
   
