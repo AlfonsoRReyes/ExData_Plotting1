@@ -1,9 +1,10 @@
-
+library(dplyr)
+library(lubridate)
 
 read_2d <- function() {
   # function to read selected rows from large dataset
   
-  library(dplyr)
+
   
   fn <- "./data/household_power_consumption.txt"
   
@@ -44,4 +45,14 @@ read_2d <- function() {
   cat("Finished reading ", (n2007_2-n2007_1), "rows \n")
   return(DF3)
   
+}
+
+
+cleanup_data <- function(df) {
+  df07_2d <- df %>%
+    mutate(date_time = as.POSIXct(
+      paste(Date, Time),              # combine the date and time
+      format="%d/%m/%Y %H:%M:%S")     # string format to use for the new variable
+    )
+  return(df07_2d)
 }
