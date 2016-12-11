@@ -49,10 +49,14 @@ Instead of loading the whole dataset a subset of it will be loaded. To achieve t
 ## Using only 2007 data
 We will only be using data from the dates 2007-02-01 and 2007-02-02. One alternative is to read the data from just those dates rather than reading in the entire dataset and subsetting to those dates.
 
-## Code for loading a subset of the large dataset
-The script perform these tasks:
+## Size of the large dataset
+To calculate the memory that the large dataset would be taking we use the function `object.size()`. After loading the large dataset of 2 million and 75,259 observations and 9 variables we get that it would take approximately 150 megaabytes of space in the RAM.
 
-* Reads one row of the large dataset.
+
+## Code for loading a subset of the large dataset
+The script performs these tasks:
+
+* Reads only one row of the large dataset.
 * Finds the number of variables or columns.
 * Read the column with the date that will enable us to select the two days in February 2007.
 * Converts that variable from character to `Date` class.
@@ -117,9 +121,10 @@ In the end, 2880 observations by 9 variables is the size of the data frame requi
 
 
 ```r
+# read the script for extracting the data
 source("read_data.R")
 
-power <- read_2d()
+power <- read_2d()    # create a data frame from the function
 ```
 
 ```
@@ -315,7 +320,7 @@ with(power07_2d,
 
 ![](README_files/figure-html/plot4-1-chunk-1.png)<!-- -->
 
-### Plot Global Reactive Power vs date_time
+### Plot Global Reactive Power vs datetime
 
 ```r
 with(power07_2d,
